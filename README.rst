@@ -24,7 +24,7 @@ Como usar
 
  from report.actions import report_generic
 
--Na classe de administração do model, ainda no arquivo admin.py adicione uma variável chamada "list_report" contendo uma lista com os nome dos atributos do model que serão irão aparecer no relatório
+-Na classe de administração do model, ainda no arquivo admin.py adicione uma variável chamada "list_report" contendo uma lista com os nome dos atributos do model que irão aparecer no relatório
 
  list_report = ('atributo1', 'atributo2', )
 
