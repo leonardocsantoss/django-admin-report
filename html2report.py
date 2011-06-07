@@ -46,14 +46,6 @@ def html_report_generic(nome_relatorio, list_report, queryset):
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td><div align="center" class="style0">
-                <h3>SECRETARIA DE EDUCAÇÃO - TABIRA-PE</h3>
-                Rua  – Albertina Xavier Pires , 239 – Centro CEP: 56.780-000<br />
-                Tabira  - Pernanbuco – CNPJ Nº 10.349.041/0001-41
-              </div>
-                </td>
-          </tr>
-          <tr>
 
             <td align="center"><span class="style1"><br />
                 <strong>"""+smart_str(nome_relatorio)+""" - RELATÓRIO GERAL</strong><br />
