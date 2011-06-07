@@ -8,7 +8,7 @@ Django Admin Report é uma pequena aplicação Django, que permite de forma simp
 Dependências
 ===============
 
--Pisa(__http://www.xhtml2pdf.com/)
+-Pisa(http://www.xhtml2pdf.com/)
 
 
 Instalação
