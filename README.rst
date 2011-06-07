@@ -22,7 +22,7 @@ Como usar
 ===============
 -No arquivo admin.py da sua aplicação importe a action:
 
- $from report.actions import report_generic
+ $from django-admin-report.actions import report_generic
 
 -Na classe de administração do model, ainda no arquivo admin.py adicione uma variável chamada "list_report" contendo uma lista com os nome dos atributos do model que serão irão aparecer no relatório
 
