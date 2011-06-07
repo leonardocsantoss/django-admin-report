@@ -22,12 +22,12 @@ Como usar
 ===============
 -No arquivo admin.py da sua aplicação importe a action:
 
- $from django-admin-report.actions import report_generic
+ from django-admin-report.actions import report_generic
 
 -Na classe de administração do model, ainda no arquivo admin.py adicione uma variável chamada "list_report" contendo uma lista com os nome dos atributos do model que serão irão aparecer no relatório
 
- $ list_report = ('atributo1', 'atributo2', )
+ list_report = ('atributo1', 'atributo2', )
 
 -Ainda na classe de administração do modelo adicione a action "report_generic" na lista de actions
 
- $ actions = [report_generic, ]
+ actions = [report_generic, ]
