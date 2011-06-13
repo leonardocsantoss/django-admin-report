@@ -18,6 +18,11 @@ def get_value(query, report):
         value = " - "
     elif type(value) is date:
         value = value.strftime('%d/%m/%Y')
+    elif type(value) is bool:
+        if value:
+            value = "Sim"
+        else:
+            value = "Não"
     elif type(value) is unicode and value != " - " and len(value) <= 3:
         try:
             func = getattr(query, "get_"+report+"_display")
