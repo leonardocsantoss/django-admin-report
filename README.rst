@@ -2,32 +2,32 @@
  Django Admin Report
 ===================
 
-Django Admin Report é uma pequena aplicação Django, que permite de forma simples a exportação em pdf de relatórios usando a interface de administração do django.
+Django Admin Report is a small django application that allows for easy exporting of PDF reports through the admin interface.
 
 
-Dependências
+Dependencies
 ===============
 
 -Pisa(http://www.xhtml2pdf.com/)
 
 
-Instalação
+Installation
 ===============
 
-1. Baixe a aplicação
-2. Cole a pasta "report" no path do seu projeto
+-Download the application
+-Add the package "report" to your path.
 
 
-Como usar
+Usage
 ===============
--No arquivo admin.py da sua aplicação importe a action:
+- In your application's admin.py, import the following 'action' like so:
 
- from report.actions import report_generic
+    from report.actions import report_generic
 
--Na classe de administração do model, ainda no arquivo admin.py adicione uma variável chamada "list_report" contendo uma lista com os nome dos atributos do model que irão aparecer no relatório
+- Also in admin.py, in your model's ModelAdmin specify a variable called "list_report" that should contain an iterable with the model attributes that should appear on the report, e.g.
 
- list_report = ('atributo1', 'atributo2', )
+    list_report = ('some_attribute', 'other_attribute', )
 
--Ainda na classe de administração do modelo adicione a action "report_generic" na lista de actions
+- Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
 
- actions = [report_generic, ]
+    actions = [report_generic, ]
