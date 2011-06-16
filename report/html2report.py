@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.encoding import smart_str
 
-from datetime import date
+from datetime import date, datetime
 
 
 def get_display(report, queryset):
@@ -18,6 +18,8 @@ def get_value(query, report):
         value = " - "
     elif type(value) is date:
         value = value.strftime('%d/%m/%Y')
+    elif type(value) is datetime:
+        value = value.strftime('%d/%m/%Y %H:%M')
     elif type(value) is bool:
         if value:
             value = "Sim"
