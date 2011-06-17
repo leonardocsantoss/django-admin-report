@@ -42,8 +42,11 @@ Usage Detailed Report
 - Also in admin.py, in your model's ModelAdmin specify a variable called "fieldsets_report" that should contain an iterable with the model attributes that should appear on the report, e.g.
 
     fieldsets_report = [
+
         (u'Description block 1',             {'fields' : ( 'some_attribute', 'other_attribute', ), }, ),
+        
         (u'Description block 2',             {'fields' : ( 'some_attribute_new', 'other_attribute_new', ), }, ),
+        
     ]
 
 - Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
