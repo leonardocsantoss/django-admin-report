@@ -6,6 +6,12 @@ from datetime import date, datetime
 def capitalize(string):
     return string[0].upper()+string[1:]
 
+def many_to_many_display(list):
+    display = ""
+    for i, item in enumerate(list):
+        display += smart_str(item)
+        if i != len(list)-1: display += ", "
+    return display
 
 def get_display(queryset, report):
     try:
@@ -49,6 +55,8 @@ def get_value(query, report):
         elif "instancemethod" in str(type(value)):
             func = getattr(query, report)
             value = func()
+        elif "django.db.models.fields.related.ManyRelatedManager" in str(type(value)):
+            value = many_to_many_display(value.all())
         return smart_str(value)
 
 
