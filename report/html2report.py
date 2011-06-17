@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from django.utils.encoding import smart_str
-
 from datetime import date, datetime
 
 
-def get_display(report, queryset):
+def get_display(queryset, report):
     try:
         value = smart_str(queryset.model._meta.get_field(report).verbose_name)
     except:
-        value = smart_str(report[0].upper()+report[1:])
+        try:
+            value = smart_str(queryset._meta.get_field(report).verbose_name)
+        except:
+            value = smart_str(report[0].upper()+report[1:])
     return value
 
 
@@ -65,7 +67,7 @@ def html_report_generic(nome_relatorio, list_report, queryset):
               <tr>
                 <td width="3%" class="style1 style3">Nº</td>"""
     for report in list_report:
-        value = get_display(report, queryset)
+        value = get_display(queryset, report)
         html += "<td width=\"%s%%\" class=\"style1 style3\">%s</td>" % (len(value)+7, value)
 
     html += "</tr>"
@@ -81,4 +83,46 @@ def html_report_generic(nome_relatorio, list_report, queryset):
         html += "</tr>"
 
     html += "</table>"
+    return html
+
+
+
+def html_report_generic_detailed(nome_relatorio, fieldsets_report, query):
+
+    html = """
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            .style1 {font-family: Arial, Helvetica, sans-serif; padding-top: 2px;}
+            .style4 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; border-bottom: 1px #000 solid; padding-top: 10px;}
+        </style>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+
+            <td align="center"><span class="style1"><br />
+                <strong>"""+smart_str(nome_relatorio)+""" - RELATÓRIO DETALHADO</strong><br />
+              <br />
+            </span></td>
+          </tr>
+        </table> """
+
+    html += """
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">"""
+    for fieldset in fieldsets_report:
+        html += """
+            <tr>
+                <td colspan="2" class="style4">"""+smart_str(fieldset[0])+"""</td>
+            </tr>
+        """
+        anterior = False
+        for key,field in enumerate(fieldset[1]['fields']):
+            if key%2 == 0: anterior = field
+            else:
+                html += """
+                <tr>
+                    <td width="50%" class="style1"><strong>"""+smart_str(get_display(query, anterior))+""": </strong>"""+smart_str(get_value(query, anterior))+"""</td>
+                    <td width="50%" class="style1"><strong>"""+smart_str(get_display(query, field))+""": </strong>"""+smart_str(get_value(query, field))+"""</td>
+                </tr>"""
+
+    html += "</table>"
+
     return html
