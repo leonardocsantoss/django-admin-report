@@ -36,7 +36,7 @@ def report_generic_detailed(self, request, queryset):
 
         local = settings.MEDIA_ROOT
         for key,query in enumerate(queryset):
-            nome =  "RelatorioDetalhado-%s-%s.pdf" % smart_str(queryset.model._meta.verbose_name.upper(), key)
+            nome =  "RelatorioDetalhado-%s-%s.pdf" % (smart_str(queryset.model._meta.verbose_name.upper()), key)
 
             html = html_report_generic_detailed(queryset.model._meta.verbose_name.upper(), self.fieldsets_report, query)
             arquivo = file(local+nome, 'w')
