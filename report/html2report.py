@@ -3,40 +3,54 @@ from django.utils.encoding import smart_str
 from datetime import date, datetime
 
 
+def capitalize(string):
+    return string[0].upper()+string[1:]
+
+
 def get_display(queryset, report):
     try:
-        value = smart_str(queryset.model._meta.get_field(report).verbose_name)
+        model = queryset.model
     except:
+        model = queryset
+    if "__" in report:
+        value = getattr(model, report.split("__")[0])
+        return get_display(value, report.replace(report.split("__")[0]+"__", ""))
+    else:
         try:
-            value = smart_str(queryset._meta.get_field(report).verbose_name)
+            value = smart_str(capitalize(model._meta.get_field(report).verbose_name))
         except:
-            value = smart_str(report[0].upper()+report[1:])
-    return value
+           value = smart_str(capitalize(report))
+        return value
 
 
 def get_value(query, report):
-    value = getattr(query, report)
-    if value is None or value == "":
-        value = " - "
-    elif type(value) is date:
-        value = value.strftime('%d/%m/%Y')
-    elif type(value) is datetime:
-        value = value.strftime('%d/%m/%Y %H:%M')
-    elif type(value) is bool:
-        if value:
-            value = "Sim"
-        else:
-            value = "Não"
-    elif type(value) is unicode and value != " - " and len(value) <= 3:
-        try:
-            func = getattr(query, "get_"+report+"_display")
+    if "__" in report:
+        value = getattr(query, report.split("__")[0])
+        return get_value(value, report.replace(report.split("__")[0]+"__", ""))
+    else:
+        value = getattr(query, report)
+        if value is None or value == "":
+            value = " - "
+        elif type(value) is date:
+            value = value.strftime('%d/%m/%Y')
+        elif type(value) is datetime:
+            value = value.strftime('%d/%m/%Y %H:%M')
+        elif type(value) is bool:
+            if value:
+                value = "Sim"
+            else:
+                value = "Não"
+        elif type(value) is unicode and value != " - " and len(value) <= 3:
+            try:
+                func = getattr(query, "get_"+report+"_display")
+                value = func()
+            except:
+                pass
+        elif "instancemethod" in str(type(value)):
+            func = getattr(query, report)
             value = func()
-        except:
-            pass
-    elif "instancemethod" in str(type(value)):
-        func = getattr(query, report)
-        value = func()
-    return smart_str(value)
+        return smart_str(value)
+
 
 def html_report_generic(nome_relatorio, list_report, queryset):
 
