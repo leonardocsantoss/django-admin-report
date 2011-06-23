@@ -52,3 +52,15 @@ Usage Detailed Report
 - Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
 
     actions = [report_generic_detailed, ]
+
+
+Edit the Header Report
+===============
+
+- In admin.py, in your model's ModelAdmin specify a variable called "report_header" for the General Report and specify a variable called "report_header_detailed" for the Detailed Report, these variables are strings, that contains the reader in HTML.
+
+    report_header = "<h1>Test of header geral</h1>"
+    
+    report_header_detailed = "<h1>Test of header detailed</h1>"
+
+- If not specify the variables "report_header" or "report_header_detailed", the report put the model name as a header.

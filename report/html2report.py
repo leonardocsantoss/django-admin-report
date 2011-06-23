@@ -60,7 +60,7 @@ def get_value(query, report):
         return smart_str(value)
 
 
-def html_report_generic(nome_relatorio, list_report, queryset):
+def html_report_generic(report_header, list_report, queryset):
 
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -76,11 +76,7 @@ def html_report_generic(nome_relatorio, list_report, queryset):
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-
-            <td align="center"><span class="style1"><br />
-                <strong>"""+smart_str(nome_relatorio)+""" - RELATÓRIO GERAL</strong><br />
-              <br />
-            </span></td>
+            <td align="center">"""+smart_str(report_header)+"""</td>
           </tr>
         </table> """
 
@@ -109,7 +105,7 @@ def html_report_generic(nome_relatorio, list_report, queryset):
 
 
 
-def html_report_generic_detailed(nome_relatorio, fieldsets_report, query):
+def html_report_generic_detailed(report_header, fieldsets_report, query):
 
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -119,11 +115,7 @@ def html_report_generic_detailed(nome_relatorio, fieldsets_report, query):
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-
-            <td align="center"><span class="style1"><br />
-                <strong>"""+smart_str(nome_relatorio)+""" - RELATÓRIO DETALHADO</strong><br />
-              <br />
-            </span></td>
+            <td align="center">"""+smart_str(report_header)+"""</td>
           </tr>
         </table> """
 
