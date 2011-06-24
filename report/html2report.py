@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.encoding import smart_str
 from datetime import date, datetime
+from django.conf import settings
 
 
 def capitalize(string):
@@ -38,9 +39,9 @@ def get_value(query, report):
         if value is None or value == "":
             value = " - "
         elif type(value) is date:
-            value = value.strftime('%d/%m/%Y')
+            value = value.strftime(settings.DATE_INPUT_FORMATS[0])
         elif type(value) is datetime:
-            value = value.strftime('%d/%m/%Y %H:%M')
+            value = value.strftime(settings.DATETIME_INPUT_FORMATS[0])
         elif type(value) is bool:
             if value:
                 value = "Sim"
