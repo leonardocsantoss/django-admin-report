@@ -8,14 +8,14 @@ Django Admin Report is a small django application that allows for easy exporting
 Dependencies
 ===============
 
--Pisa(http://www.xhtml2pdf.com/)
+- Pisa(http://www.xhtml2pdf.com/)
 
 
 Installation
 ===============
 
--Download the application
--Add the package "report" to your path.
+- Download the application
+- Add the package "report" to your path.
 
 
 Usage General Report
