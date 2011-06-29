@@ -70,10 +70,11 @@ def html_report_generic(report_header, list_report, queryset):
               size: a4 landscape;
               margin: 1cm;
             }
-            .style0 {font-family: Arial, Helvetica, sans-serif; text-align: center; padding-top: 3px; padding-bottom: 3px; }
-            .style1 {font-family: Arial, Helvetica, sans-serif; text-align: center; font-weight: bold; padding-top: 3px; padding-bottom: 3px; }
-            .style2 {font-family: Arial, Helvetica, sans-serif; text-align: center; padding-top: 3px;}
-            .style3 {font-family: Arial, Helvetica, sans-serif; text-align: center; padding-top: 3px; background: #f0f0f0;}
+            body { font-family: Arial, Helvetica, sans-serif; text-align: center; }
+            .style0 {padding-top: 3px; padding-bottom: 3px; }
+            .style1 {font-weight: bold; padding-top: 3px; padding-bottom: 3px; }
+            .style2 {padding-top: 3px;}
+            .style3 {padding-top: 3px; background: #f0f0f0;}
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -111,8 +112,9 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
-            .style1 {font-family: Arial, Helvetica, sans-serif; padding-top: 2px;}
-            .style4 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; border-bottom: 1px #000 solid; padding-top: 10px;}
+            body { font-family: Arial, Helvetica, sans-serif; }
+            .style1 {padding-top: 2px;}
+            .style4 {font-weight: bold; border-bottom: 1px #000 solid; padding-top: 10px;}
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
