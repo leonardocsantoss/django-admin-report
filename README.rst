@@ -42,7 +42,7 @@ Usage General Report
 
     list_report = ('some_attribute', 'other_attribute', )
 
-- 2. Now you simply create your types of repot, using the administration interface. When created, it automatically creates a menu in the admin-tools, where the reports will be generated.
+- 2. Now you simply create your types of report, using the administration interface. When created, it automatically creates a menu in the admin-tools, where the reports will be generated.
 
 
 Usage Detailed Report
