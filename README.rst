@@ -8,38 +8,50 @@ Django Admin Report is a small django application that allows for easy exporting
 Dependencies
 ===============
 
-- Pisa(http://www.xhtml2pdf.com/)
+- Pisa(http://www.xhtml2pdf.com/)(Required)
+- Django-admin-tools(https://bitbucket.org/izi/django-admin-tools/wiki/Home)(Recommended)
 
 
 Installation
 ===============
 
-- Download the application
-- Add the package "report" to your path.
+- 1. Download the application
+- 2. Add the package "report" to your path.
+- 3. Add the app "report" into your settings.py
+
+    INSTALLED_APPS = (
+        ...
+        'report',
+    )
+
+- 4. Add the urls of the app "report" into your urls.py
+
+    (r'^report/', include('report.urls')),
+
+- 5. Copy the folder "media/report" to your media folder
+
+- 6. If you use the app "django-admin-tools, add the variable "ADMIN_TOOLS_MENU" into your settings.py
+
+    ADMIN_TOOLS_MENU = 'report.menu.CustomMenu'
 
 
 Usage General Report
 ===============
-- In your application's admin.py, import the following 'action' like so:
 
-    from report.actions import report_generic
-
-- Also in admin.py, in your model's ModelAdmin specify a variable called "list_report" that should contain an iterable with the model attributes that should appear on the report, e.g.
+- 1. Also in admin.py, in your model's ModelAdmin specify a variable called "list_report" that should contain an iterable with the model attributes that should appear on the report, e.g.
 
     list_report = ('some_attribute', 'other_attribute', )
 
-- Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
-
-    actions = [report_generic, ]
+- 2. Now you simply create your types of repot, using the administration interface. When created, it automatically creates a menu in the admin-tools, where the reports will be generated.
 
 
 Usage Detailed Report
 ===============
-- In your application's admin.py, import the following 'action' like so:
+- 1. In your application's admin.py, import the following 'action' like so:
 
     from report.actions import report_generic_detailed
 
-- Also in admin.py, in your model's ModelAdmin specify a variable called "fieldsets_report" that should contain an iterable with the model attributes that should appear on the report, e.g.
+- 2. Also in admin.py, in your model's ModelAdmin specify a variable called "fieldsets_report" that should contain an iterable with the model attributes that should appear on the report, e.g.
 
     fieldsets_report = [
 
@@ -49,18 +61,10 @@ Usage Detailed Report
         
     ]
 
-- Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
+- 3. In admin.py, in your model's ModelAdmin specify a variable called  "report_header_detailed" for the Detailed Report, this variable is string, that contains the reader in HTML.
 
-    actions = [report_generic_detailed, ]
-
-
-Edit the Header Report
-===============
-
-- In admin.py, in your model's ModelAdmin specify a variable called "report_header" for the General Report and specify a variable called "report_header_detailed" for the Detailed Report, these variables are strings, that contains the reader in HTML.
-
-    report_header = "<h1>Test of header geral</h1>"
-    
     report_header_detailed = "<h1>Test of header detailed</h1>"
 
-- If not specify the variables "report_header" or "report_header_detailed", the report put the model name as a header.
+- 4. Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
+
+    actions = [report_generic_detailed, ]
