@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from html2report import html_report_generic, html_report_generic_detailed
+from html2report import html_report_generic_detailed
 from django.http import HttpResponse
 from django.conf import settings
 import ho.pisa as pisa
@@ -16,30 +16,11 @@ def remove_sc(txt, codif='utf-8'):
     return normalize('NFKD', txt.decode(codif)).encode('ASCII','ignore')
 
 
-def get_header(self, queryset):
-    try:
-        return self.report_header
-    except:
-        return queryset.model._meta.verbose_name.upper()
-
-
 def get_header_detailed(self, queryset):
     try:
         return self.report_header_detailed
     except:
         return queryset.model._meta.verbose_name.upper()
-
-
-def report_generic(self, request, queryset):
-    response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=%s.pdf' % smart_str(queryset.model._meta.verbose_name.upper())
-
-    html = html_report_generic(get_header(self, queryset), self.list_report, queryset)
-    pdf = pisa.CreatePDF(html, response)
-
-    return response
-
-report_generic.short_description = _(u"Imprimir relatório geral")
 
 
 def report_generic_detailed(self, request, queryset):

@@ -27,7 +27,7 @@ def get_display(queryset, report):
             value = smart_str(capitalize(model._meta.get_field(report).verbose_name))
         except:
            value = smart_str(capitalize(report))
-        return value
+        return value.replace("_", " ")
 
 
 def get_value(query, report):
