@@ -1,0 +1,67 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify adminmedia %}
+
+{% block extrahead %}{{ block.super }}
+{% url admin:jsi18n as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}
+
+{% block bodyclass %}change-form{% endblock %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+     <a href="/">{% trans "Home" %}</a> &rsaquo;
+     {% trans "Report" %} &rsaquo;
+     {% trans title %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form action="" method="post" >{% csrf_token %}
+        <div>
+            
+            <fieldset class="module aligned">
+                <h2>{% trans 'Filtros' %}</h2>
+                    
+                    {% for field in form %}
+                        {% if forloop.first %}
+                            <div class="form-row">
+                               <div>{% trans 'Selecione os filtros que deseja aplicar para esse relatório!' %}</div>
+                           </div>
+                        {% endif %}
+                    <div class="form-row">
+                            <div>
+                                {% if field.is_checkbox %}
+                                    {{ field }}{{ field.label_tag }}
+                                {% else %}
+                                    {{ field.label_tag }}
+                                    {% if field.is_readonly %}
+                                        <p>{{ field.contents }}</p>
+                                    {% else %}
+                                        {{ field }}
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                    </div>
+                    {% empty %}
+                         <div class="form-row">
+                           <div>{% trans 'Não há filtros para esse relatório!' %}</div>
+                       </div>
+                    {% endfor %}
+               
+            </fieldset>
+            
+            <div class="submit-row" >
+                <input type="submit" value="{% trans 'Imprimir' %}" />
+            </div>
+
+        </div>
+    </form>
+</div>
+{% endblock %}
