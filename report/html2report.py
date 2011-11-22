@@ -66,15 +66,14 @@ def html_report_generic(report_header, list_report, queryset):
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
-            @page {
-              size: a4 landscape;
-              margin: 1cm;
-            }
-            body { font-family: Arial, Helvetica, sans-serif; text-align: center; }
+            @page { size: a4 landscape; margin: 1cm; }
+            body { font-family:Helvetica Narrow, sans-serif; font-size:12px; }
+            table tr td{ padding:4px 5px; font-weight:Normal; color:#424242; }
             .style0 {padding-top: 3px; padding-bottom: 3px; }
-            .style1 {font-weight: bold; padding-top: 3px; padding-bottom: 3px; }
-            .style2 {padding-top: 3px;}
-            .style3 {padding-top: 3px; background: #f0f0f0;}
+            .style1 {padding-top: 3px; padding-bottom: 3px; }
+            .style2 {padding-top: 5px;}
+            .style3 {padding-top: 5px; background: #f4f4f4; }
+            .tlt { padding:7px 5px; background: #88BFE8; color:#fff; }
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -85,10 +84,10 @@ def html_report_generic(report_header, list_report, queryset):
     html += """
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="3%" class="style1 style3">Nº</td>"""
+                <td width="3%" class="style1 tlt">Nº</td>"""
     for report in list_report:
         value = get_display(queryset, report)
-        html += "<td width=\"%s%%\" class=\"style1 style3\">%s</td>" % (len(value)+7, value)
+        html += "<td width=\"%s%%\" class=\"style1 tlt\">%s</td>" % (len(value)+7, value)
 
     html += "</tr>"
 
@@ -112,13 +111,17 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
-            body { font-family: Arial, Helvetica, sans-serif; }
-            .style1 {padding-top: 2px;}
-            .style4 {font-weight: bold; border-bottom: 1px #000 solid; padding-top: 10px;}
+            body { font-family:Helvetica Narrow, sans-serif; }
+            table tr td{ padding:2px 3px; font-weight:Normal; color:#424242; font-family:Helvetica Narrow, sans-serif; font-size:12px; }
+            .style1 {padding: 5px 2px; font-size:12px;}
+            .style4 {font-weight: bolder; padding-top: 10px; }
+            .tlt { padding:5px 3px; background: #88BFE8; color:#fff; font-size:12px; font-weight:normal; }
+            .up{ padding:12px 0 30px 0; }
+            .b{background: #88BFE8;}
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td align="center">"""+smart_str(report_header)+"""</td>
+            <td align="center" class="up">"""+smart_str(report_header)+"""</td>
           </tr>
         </table> """
 
@@ -127,7 +130,7 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
     for fieldset in fieldsets_report:
         html += """
             <tr>
-                <td colspan="2" class="style4">"""+smart_str(fieldset[0])+"""</td>
+                <td colspan="2" class="style4 tlt">"""+smart_str(fieldset[0])+"""</td>
             </tr>
         """
         anterior = False
@@ -140,6 +143,10 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
                     <td width="50%" class="style1"><strong>"""+smart_str(get_display(query, field))+""": </strong>"""+smart_str(get_value(query, field))+"""</td>
                 </tr>"""
 
-    html += "</table>"
+    html += """<tr>
+                    <td width="50%" class="b"></td>
+                    <td width="50%" class="b"></td>
+                </tr>
+            </table>"""
 
     return html
