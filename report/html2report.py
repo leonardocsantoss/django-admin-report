@@ -66,28 +66,27 @@ def html_report_generic(report_header, list_report, queryset):
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
-            @page { size: a4 landscape; margin: 1cm; }
-            body { font-family:Helvetica Narrow, sans-serif; font-size:12px; }
-            table tr td{ padding:4px 5px; font-weight:Normal; color:#424242; }
-            .style0 {padding-top: 3px; padding-bottom: 3px; }
-            .style1 {padding-top: 3px; padding-bottom: 3px; }
-            .style2 {padding-top: 5px;}
-            .style3 {padding-top: 5px; background: #f4f4f4; }
-            .tlt { padding:7px 5px; background: #88BFE8; color:#fff; }
+            @page {size: a4 landscape; margin: 1cm; }
+            body {font-family:Helvetica Narrow, sans-serif; font-size:12px; }
+            .pad5 {padding: 5px 5px 0 5px;}
+            .desc {font-weight: bolder; border-bottom: 2px #000 solid; background: #f4f4f4;}
+            .style2 {color: #666; }
+            .style3 {color: #666; background: #f4f4f4; }
+            .head {padding-bottom: 10px;}
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td align="center">"""+smart_str(report_header)+"""</td>
+            <td align="center" class="head">"""+smart_str(report_header)+"""</td>
           </tr>
         </table> """
 
     html += """
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="3%" class="style1 tlt">Nº</td>"""
+                <td width="3%" class="desc pad5">Nº</td>"""
     for report in list_report:
         value = get_display(queryset, report)
-        html += "<td width=\"%s%%\" class=\"style1 tlt\">%s</td>" % (len(value)+7, value)
+        html += "<td width=\"%s%%\" class=\"desc pad5\">%s</td>" % (len(value)+7, value)
 
     html += "</tr>"
 
@@ -95,10 +94,10 @@ def html_report_generic(report_header, list_report, queryset):
         html += "<tr>"
         if i%2==0: z=2
         else: z=3
-        html += "<td class=\"style%s\">%s</td>" %(z, i+1)
+        html += "<td class=\"pad5 style%s\">%s</td>" %(z, i+1)
         for report in list_report:
             value = get_value(query, report)
-            html += "<td width=\"%s%%\" class=\"style%s\">%s</td>" % (len(value)+7, z, value)
+            html += "<td width=\"%s%%\" class=\"pad5 style%s\">%s</td>" % (len(value)+7, z, value)
         html += "</tr>"
 
     html += "</table>"
@@ -111,17 +110,15 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
     html = """
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
-            body { font-family:Helvetica Narrow, sans-serif; }
-            table tr td{ padding:2px 3px; font-weight:Normal; color:#424242; font-family:Helvetica Narrow, sans-serif; font-size:12px; }
-            .style1 {padding: 5px 2px; font-size:12px;}
-            .style4 {font-weight: bolder; padding-top: 10px; }
-            .tlt { padding:5px 3px; background: #88BFE8; color:#fff; font-size:12px; font-weight:normal; }
-            .up{ padding:12px 0 30px 0; }
-            .b{background: #88BFE8;}
+            body { font-family:Helvetica Narrow, sans-serif; font-size:12px; }
+            .desc {font-weight: bolder; border-bottom: 2px #000 solid; font-weight:bolder; padding: 10px 0 0 0;}
+            .pad3 {padding: 3px; color: #666;}
+            .bottom{ border-bottom: 2px #000 solid;}
+            .head {padding-bottom: 10px;}
         </style>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td align="center" class="up">"""+smart_str(report_header)+"""</td>
+            <td align="center" class="head">"""+smart_str(report_header)+"""</td>
           </tr>
         </table> """
 
@@ -130,7 +127,7 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
     for fieldset in fieldsets_report:
         html += """
             <tr>
-                <td colspan="2" class="style4 tlt">"""+smart_str(fieldset[0])+"""</td>
+                <td colspan="2" class="desc">"""+smart_str(fieldset[0])+"""</td>
             </tr>
         """
         anterior = False
@@ -139,13 +136,13 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
             else:
                 html += """
                 <tr>
-                    <td width="50%" class="style1"><strong>"""+smart_str(get_display(query, anterior))+""": </strong>"""+smart_str(get_value(query, anterior))+"""</td>
-                    <td width="50%" class="style1"><strong>"""+smart_str(get_display(query, field))+""": </strong>"""+smart_str(get_value(query, field))+"""</td>
+                    <td width="50%" class="pad3"><strong>"""+smart_str(get_display(query, anterior))+""": </strong>"""+smart_str(get_value(query, anterior))+"""</td>
+                    <td width="50%" class="pad3"><strong>"""+smart_str(get_display(query, field))+""": </strong>"""+smart_str(get_value(query, field))+"""</td>
                 </tr>"""
 
     html += """<tr>
-                    <td width="50%" class="b"></td>
-                    <td width="50%" class="b"></td>
+                    <td width="50%" class="bottom"></td>
+                    <td width="50%" class="bottom"></td>
                 </tr>
             </table>"""
 
