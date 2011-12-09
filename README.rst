@@ -73,6 +73,8 @@ Usage Detailed Report
 
 Example
 ===============
-User in the example:
+- User in the example:
+
 username: admin
+
 password: admin
