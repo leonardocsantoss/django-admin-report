@@ -68,3 +68,11 @@ Usage Detailed Report
 - 4. Finally, make sure you also add the aforementioned 'action' to your ModelAdmin's list of actions, like so:
 
     actions = [report_generic_detailed, ]
+
+
+
+Example
+===============
+User in the example:
+username: admin
+password: admin
