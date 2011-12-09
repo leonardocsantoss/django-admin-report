@@ -130,15 +130,15 @@ def html_report_generic_detailed(report_header, fieldsets_report, query):
                 <td colspan="2" class="desc">"""+smart_str(fieldset[0])+"""</td>
             </tr>
         """
-        anterior = False
+
         for key,field in enumerate(fieldset[1]['fields']):
-            if key%2 == 0: anterior = field
-            else:
-                html += """
-                <tr>
-                    <td width="50%" class="pad3"><strong>"""+smart_str(get_display(query, anterior))+""": </strong>"""+smart_str(get_value(query, anterior))+"""</td>
-                    <td width="50%" class="pad3"><strong>"""+smart_str(get_display(query, field))+""": </strong>"""+smart_str(get_value(query, field))+"""</td>
-                </tr>"""
+            if key%2 == 0: html += "<tr>"
+            html += """
+                <td width="50%" class="pad3"><strong>"""+smart_str(get_display(query, field))+""": </strong>"""+smart_str(get_value(query, field))+"""</td>
+            """
+            if key%2 != 0: html += "</tr>"
+        if len(fieldset[1]['fields'])%2 == 0:
+            html += "</tr>"
 
     html += """<tr>
                     <td width="50%" class="bottom"></td>
