@@ -1,0 +1,174 @@
+# ITALIAN .
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Giuseppe Saviano <g.saviano@gmail.com>, 2012.
+#
+
+msgid "Italian"
+msgstr "Italiano"
+"Project-Id-Version: 1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-28 15:48+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Giuseppe Saviano <g.saviano@gmail.com>\n"
+"Language-Team: NO TEAM <noteam@example.com>\n"
+"Language: ITALIAN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: actions.py:35
+msgid "Relatorio"
+msgstr "Report"
+
+#: actions.py:56
+msgid "Imprimir relatório detalhado"
+msgstr "Stampa report dettagliato"
+
+#: admin.py:35 admin.py:91 models.py:19
+msgid "Campos"
+msgstr "Campi"
+
+#: admin.py:35
+msgid "Selecione os campos desse tipo de relatório."
+msgstr "Seleziona i campi per questo tipo di report."
+
+#: admin.py:47 admin.py:76 admin.py:88 models.py:12
+msgid "Tipo de relatório"
+msgstr "Tipo di report"
+
+#: admin.py:48 admin.py:77 admin.py:89 models.py:17
+msgid "Permissão"
+msgstr "Permessi"
+
+#: admin.py:49 admin.py:78 admin.py:90 models.py:18
+msgid "Modelo"
+msgstr "Modello"
+
+#: menu.py:22
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: menu.py:23
+msgid "Favoritos"
+msgstr "Preferiti"
+
+#: menu.py:25
+msgid "Applications"
+msgstr "Applicazioni"
+
+#: menu.py:29
+msgid "Administration"
+msgstr "Amministrazione"
+
+#: menu.py:47
+msgid "Relatórios"
+msgstr "Report"
+
+#: models.py:13
+msgid "Tipos de relatórios"
+msgstr "Tipi di report"
+
+#: models.py:15
+msgid "Título"
+msgstr "Titolo"
+
+#: models.py:15
+msgid "Insira o título do tipo de relatório."
+msgstr "Inserisci il titolo per questo tipo di report."
+
+#: models.py:16
+msgid "Cabeçalho"
+msgstr "Intestazione"
+
+#: models.py:16
+msgid "Insira o cabeçalho do tipo de relatório."
+msgstr "Inserisci l'intestazione per questo tipo report."
+
+#: models.py:17
+msgid ""
+"Selecione os grupos que tem permissão para imprimir esse tipo de relatório."
+msgstr "Inserisci i gruppi che hanno i permessi per accedere a questo report."
+
+#: models.py:18
+msgid "Selecione o modelo do tipo de relatório."
+msgstr "Seleziona il modello per questo tipo di report."
+
+#: models.py:19
+msgid "Selecione os campos do tipo de relatório."
+msgstr "Seleziona i campi per questo tipo di report."
+
+#: views.py:48
+msgid "Sim"
+msgstr "Si"
+
+#: views.py:48
+msgid "Não"
+msgstr "No"
+
+#: views.py:48
+msgid "Todos"
+msgstr "Tutti"
+
+#: views.py:63
+msgid "Qualquer data"
+msgstr "Ogni volta che"
+
+#: views.py:63
+msgid "Hoje"
+msgstr "Oggi"
+
+#: views.py:63
+msgid "Este mês"
+msgstr "Questo mese"
+
+#: views.py:63
+msgid "Este ano"
+msgstr "Quest'anno"
+
+#: templates/report/change_form.html:18 templates/report/report.html:18
+msgid "Home"
+msgstr "Home"
+
+#: templates/report/change_form.html:21
+msgid "Add"
+msgstr "Aggiungi"
+
+#: templates/report/change_form.html:28
+msgid "History"
+msgstr "Storico"
+
+#: templates/report/change_form.html:29
+msgid "View on site"
+msgstr "Visualizza sul sito"
+
+#: templates/report/change_form.html:39
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Per favore correggi l'errore che segue."
+msgstr[1] "Per favore correggi gli errori che seguono."
+
+#: templates/report/change_form.html:58
+msgid "Salvar e continuar"
+msgstr "Salva e continua"
+
+#: templates/report/report.html:19
+msgid "Report"
+msgstr "Report"
+
+#: templates/report/report.html:30
+msgid "Filtros"
+msgstr "Filtri"
+
+#: templates/report/report.html:35
+msgid "Selecione os filtros que deseja aplicar para esse relatório!"
+msgstr "Seleziona i filtri che desideri applicare a questo report"
+
+#: templates/report/report.html:54
+msgid "Não há filtros para esse relatório!"
+msgstr "Nessun filtro per questo report!"
+
+#: templates/report/report.html:61
+msgid "Imprimir"
+msgstr "Stampa"
